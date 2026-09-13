@@ -246,3 +246,28 @@ def realizar_venta(productos, proveedores, precios, cantidades, codigos):
                 "\nLa cuenta a pagar del cliente es de:",
                 cuenta
             )
+
+def verificar_inventario(productos, proveedores, precios, cantidades, codigos): 
+    if len(productos) == 0:
+        print("\nNo se puede verificar el inventario.")
+        print("No hay productos registrados.")
+        return
+    print("\n--- VERIFICACION DE INVENTARIO ---")
+    codigo = int(
+        input(
+            "Ingresa el codigo del producto "
+            "(0 para cancelar): "
+        )
+    )
+    if codigo == 0:
+        print("Verificación cancelada.")
+        return
+    if codigo not in codigos:
+        print(f"Error. El codigo {codigo} no está asociado a ningún producto.")
+        return
+    posicion = codigos.index(codigo)
+    print(f"\nEn inventario se encuentran {cantidades[posicion]} de {productos[posicion]}")
+    print(f"Proveedor: {proveedores[posicion]}")
+    print(f"Precio: {precios[posicion]}")
+    if cantidades[posicion] < 15:
+        print("Alerta. Hay poco stock del producto.")
