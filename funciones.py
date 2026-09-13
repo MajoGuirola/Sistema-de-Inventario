@@ -147,3 +147,102 @@ def ingresar_producto(productos, proveedores, precios, cantidades, codigos, sigu
         print("Codigo del producto:", siguiente_codigo)
         siguiente_codigo += 1
     return siguiente_codigo
+
+def realizar_venta(productos, proveedores, precios, cantidades, codigos):
+    if len(productos) == 0:
+        print("\nNo se puede realizar una venta.")
+        print("No hay productos registrados.")
+        return
+    cuenta = 0
+    continuar_venta = True
+    productos_vendidos = 0
+    while continuar_venta:
+
+        print("\n--- PRODUCTOS DISPONIBLES ---")
+
+        for i in range(len(productos)):
+
+            print(f"Codigo: {codigos[i]} | {productos[i]}| Stock: {cantidades[i]},| Precio: {precios[i]}")
+        print("\nEscribe 0 para cancelar la venta.")
+        codigo = int(
+            input("Escribe el codigo del producto: ")
+        )
+        if codigo == 0:
+            if productos_vendidos == 0:
+                print("\nVenta cancelada.")
+                cuenta = 0
+                continuar_venta = False
+            else:
+                print("\nYa se ha vendido al menos un producto.")
+                print("La venta se terminará con la cuenta actual.")
+                print(f"La cuenta a pagar es de: {cuenta}")
+                continuar_venta = False
+            continue
+
+        if codigo not in codigos:
+            print(f"Error. El codigo {codigo} no está asociado a ningún producto.")
+            continue
+        posicion = codigos.index(codigo)
+        print("\nProducto:", productos[posicion])
+        print("Proveedor:", proveedores[posicion])
+        print("Precio:", precios[posicion])
+        print("Stock disponible:", cantidades[posicion])
+        cantidad_menos = int(input(
+                "¿Cuantas unidades vas a vender? "
+                "(0 para cancelar): "
+            )
+        )
+        if cantidad_menos == 0:
+            print("Operación cancelada.")
+            continue
+        while cantidad_menos < 0:
+            print("Error. La cantidad no puede ser negativa.")
+            cantidad_menos = int(
+                input(
+                    "¿Cuantas unidades vas a vender? "
+                    "(0 para cancelar): "
+                )
+            )
+            if cantidad_menos == 0:
+                break
+        if cantidad_menos == 0:
+            continue
+
+        if cantidad_menos > cantidades[posicion]:
+            print("Error. No hay suficiente stock del producto.")
+            print(f"Stock disponible: {cantidades[posicion]}")
+            print("\n¿Quieres intentarlo de nuevo?")
+            print("1 - Reintentar")
+            print("2 - Terminar venta")
+            intentar = int(input("Opción: "))
+            if intentar == 2:
+                if productos_vendidos == 0:
+                    print("Venta cancelada.")
+                    continuar_venta = False
+                else:
+                    print(
+                        "La cuenta a pagar es de:",
+                        cuenta
+                    )
+                    continuar_venta = False
+            continue
+        cantidades[posicion] -= cantidad_menos
+        cuenta += precios[posicion] * cantidad_menos
+        productos_vendidos += 1
+        print("\nProducto agregado a la venta.")
+        print(f"La cuenta actual es de {cuenta}")
+        print("\n¿Continuar la venta?")
+        print("1 - Terminar")
+        print("2 - Continuar")
+        intentar = int(input("Opción: "))
+        while intentar not in [1, 2]:
+            print("Opción no válida.")
+            print("1 - Terminar")
+            print("2 - Continuar")
+            intentar = int(input("Opción: "))
+        if intentar == 1:
+            continuar_venta = False
+            print(
+                "\nLa cuenta a pagar del cliente es de:",
+                cuenta
+            )
