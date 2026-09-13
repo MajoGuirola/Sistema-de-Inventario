@@ -1,4 +1,4 @@
-from funciones import (
+from inventario import (
     mostrar_menu,
     ingresar_producto,
     realizar_venta,
