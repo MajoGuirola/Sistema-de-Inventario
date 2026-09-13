@@ -271,3 +271,14 @@ def verificar_inventario(productos, proveedores, precios, cantidades, codigos):
     print(f"Precio: {precios[posicion]}")
     if cantidades[posicion] < 15:
         print("Alerta. Hay poco stock del producto.")
+
+def mostrar_menu():
+    print("\n--- MENU PRINCIPAL ---")
+    print("1 - Ingresar producto al inventario")
+    print("2 - Realizar venta")
+    print("3 - Verificación de inventario")
+    print("4 - Salir del menu")
+    decision = int(
+        input("Presiona el numero correspondiente a la accion: ")
+    )
+    return decision
