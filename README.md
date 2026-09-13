@@ -39,3 +39,5 @@ Consulta rápida del estado de un producto específico mediante su código.
 
 ### 4. `mostrar_menu()` - Ítalo Vidaurre
 Despliega la interfaz de navegación principal en la consola, permitiendo al usuario seleccionar entre las distintas operaciones del sistema y retornar la opción elegida para su control en el flujo principal del programa.
+## Funcionamiento de `main.py`
+El código comienza importando las operaciones centrales desde el módulo externo `inventario`. Esto mantiene el proyecto modularizado, separando la lógica interna de las funciones de la interfaz general del usuario. Antes de iniciar la interacción con el usuario, el programa prepara el entorno creando las estructuras de datos vacías que simulan la base de datos en memoria declarando las lista a utilizar que se introducirán en las funciones. Se usa un while para mantener el programa en funcionamiento, y se reproducirá las veces que sea necesaria realizando las diferentes opciones hasta que `decision` sea diferente a un número válido (del 1 al 4), utilizando estructuras condicionales para decidir que función utilizar en cada caso.
