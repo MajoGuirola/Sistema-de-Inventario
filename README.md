@@ -18,12 +18,12 @@ El sistema opera sobre cinco listas paralelas y una variable de control de códi
 * `siguiente_codigo`: Entero que indica el próximo código disponible para asignar.
 
 ## Funciones Principales
-### 1. `ingresar_producto(...)` - María Guirola
+### 1. `ingresar_producto()` - María Guirola
 Gestiona el registro de nuevos artículos o la reposición de stock para productos ya existentes en el inventario.
 * **Productos Existentes (`existe == 1`):** Permite buscar un artículo por su código único e incrementar su stock actual sumando la cantidad ingresada. Valida que el código exista y que la cantidad no sea negativa.
 * **Productos Nuevos (`existe == 2`):** Solicita el nombre del producto, el proveedor (con opción de registrar uno nuevo o seleccionar de una lista de proveedores ya existentes), el precio unitario y el stock inicial. Asigna de forma automática el identificador correspondiente mediante `siguiente_codigo`.
   
-### 2. `realizar_venta(...)` - Carlos Campos
+### 2. `realizar_venta()` - Carlos Campos
 Simula el proceso de cobro y despacho de productos a un cliente, calculando el total de la cuenta.
 
 * Despliega la lista de productos disponibles con sus respectivos precios, códigos y existencias en tiempo real.
@@ -31,11 +31,11 @@ Simula el proceso de cobro y despacho de productos a un cliente, calculando el t
 * Descuenta automáticamente la cantidad vendida del stock disponible y valida que no se intente vender más unidades de las existentes.
 * Ofrece opciones para finalizar la transacción en cualquier momento o cerrar la venta de forma anticipada si ocurre un error de stock.
 
-### 3. verificar_inventario(...) - Ítalo Vidaurre
+### 3. `verificar_inventario()` - Ítalo Vidaurre
 Consulta rápida del estado de un producto específico mediante su código.
 
 * Muestra el nombre, proveedor, precio y stock actual del artículo consultado.
 * Incorpora un sistema de alerta automática que notifica en pantalla si la cantidad en inventario es menor a $15$ unidades.
 
-### 4. mostrar_menu() - Ítalo Vidaurre
+### 4. `mostrar_menu()` - Ítalo Vidaurre
 Despliega la interfaz de navegación principal en la consola, permitiendo al usuario seleccionar entre las distintas operaciones del sistema y retornar la opción elegida para su control en el flujo principal del programa.
